@@ -2651,7 +2651,7 @@ spawn(function()
         end
     end)
 end)
-FastAttackSpeed = true
+FastAttackSpeed = value
 _G.Fast_Delay = 0.01
 local CurveFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
 local VirtualUser = game:GetService("VirtualUser")
@@ -2793,7 +2793,7 @@ task.spawn(function()
     end
 end)
 
-abc = t
+abc = value
 task.spawn(function()
     local a = game.Players.LocalPlayer
     local b = require(a.PlayerScripts.CombatFramework.Particle)
