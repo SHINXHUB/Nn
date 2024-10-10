@@ -1838,11 +1838,6 @@ spawn(function()
     end
 end)
 
-function Click()
-    game:GetService'VirtualUser':CaptureController()
-    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
-end
-
 function AutoHaki()
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
@@ -1964,6 +1959,54 @@ while wait(.0) do
 end
 end)
 
+getgenv().ToTargets = function(p)
+    task.spawn(function()
+        pcall(function()
+            if game:GetService("Players").LocalPlayer:DistanceFromCharacter(p.Position) <= 250 then 
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = p
+            elseif not game.Players.LocalPlayer.Character:FindFirstChild("Root")then 
+                local K = Instance.new("Part",game.Players.LocalPlayer.Character)
+                K.Size = Vector3.new(1,0.5,1)
+                K.Name = "Root"
+                K.Anchored = true
+                K.Transparency = 1
+                K.CanCollide = false
+                K.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,20,0)
+            end
+            local U = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude
+            local z = game:service("TweenService")
+            local B = TweenInfo.new((p.Position-game.Players.LocalPlayer.Character.Root.Position).Magnitude/300,Enum.EasingStyle.Linear)
+            local S,g = pcall(function()
+            local q = z:Create(game.Players.LocalPlayer.Character.Root,B,{CFrame = p})
+            q:Play()
+        end)
+        if not S then 
+            return g
+        end
+        game.Players.LocalPlayer.Character.Root.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            if S and game.Players.LocalPlayer.Character:FindFirstChild("Root") then 
+                pcall(function()
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude >= 20 then 
+                        spawn(function()
+                            pcall(function()
+                                if (game.Players.LocalPlayer.Character.Root.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 150 then 
+                                    game.Players.LocalPlayer.Character.Root.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                                else 
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=game.Players.LocalPlayer.Character.Root.CFrame
+                                end
+                            end)
+                        end)
+                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude >= 10 and(game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude < 20 then 
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = p
+                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude < 10 then 
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = p
+                    end
+                end)
+            end
+	    end)
+    end)
+    end
+    
 spawn(function()
 game:GetService("RunService").Heartbeat:Connect(function()
     if _G.AutoAdvanceDungeon or _G.AutoDoughtBoss or _G.Auto_DungeonMobAura or _G.AutoFarmChest or _G.AutoFactory or _G.AutoFarmBossHallow or _G.AutoFarmSwanGlasses or _G.AutoLongSword or _G.AutoBlackSpikeycoat or _G.AutoElectricClaw or _G.AutoFarmGunMastery or _G.AutoHolyTorch or _G.AutoLawRaid or _G.AutoFarmBoss or _G.AutoTwinHooks or _G.AutoOpenSwanDoor or _G.AutoDragon_Trident or _G.AutoSaber or _G.NOCLIP or _G.AutoFarmFruitMastery or _G.AutoFarmGunMastery or _G.TeleportIsland or _G.Auto_EvoRace or _G.AutoFarmAllMsBypassType or _G.AutoObservationv2 or _G.AutoMusketeerHat or _G.AutoEctoplasm or _G.AutoRengoku or _G.Auto_Rainbow_Haki or _G.AutoObservation or _G.AutoDarkDagger or _G.Safe_Mode or _G.MasteryFruit or _G.AutoBudySword or _G.AutoOderSword or _G.AutoBounty or _G.AutoAllBoss or _G.Auto_Bounty or _G.AutoSharkman or _G.Auto_Mastery_Fruit or _G.Auto_Mastery_Gun or _G.Auto_Dungeon or _G.Auto_Cavender or _G.Auto_Pole or _G.Auto_Kill_Ply or _G.Auto_Factory or _G.AutoSecondSea or _G.TeleportPly or _G.AutoBartilo or _G.Auto_DarkBoss or _G.GrabChest or _G.AutoFarmBounty or _G.Holy_Torch or _G.AutoFarm or _G.Clip or _G.AutoElitehunter or _G.AutoThirdSea or _G.Auto_Bone or _G.Autoheart or _G.Autodoughking or _G.AutoFarmMaterial or _G.AutoNevaSoulGuitar or _G.Auto_Dragon_Trident or _G.Autotushita or _G.d or _G.Autowaden or _G.Autogay or _G.Autopole or _G.Autosaw or _G.AutoObservationHakiV2 or _G.AutoFarmNearest or AutoFarmChest or _G.AutoCarvender or _G.AutoTwinHook or AutoMobAura or _G.Tweenfruit or _G.AutoKai or _G.TeleportNPC or _G.Leather or _G.Auto_Wing or _G.Umm or _G.Makori_gay or Radioactive or Fish or Gunpowder or Dragon_Scale or Cocoafarm or Scrap or MiniHee or _G.AutoFarmSeabaest or _G.Auto_Cursed_Dual_Katana or _G.AutoFarmMob or _G.AutoMysticIsland or _G.AutoFarmDungeon or _G.AutoRaidPirate or _G.AutoQuestRace or _G.TweenMGear or getgenv().AutoFarm or _G.AutoPlayerHunter or _G.AutoFactory or Grab_Chest or _G.Namfon or _G.AutoSwordMastery or _G.AutoSeaBest or _G.AutoKillTial or _G.Auto_Saber or _G.Position_Spawn or _G.Farmfast or _G.AutoRace or _G.RaidPirate or Open_Color_Haki then
@@ -2123,6 +2166,40 @@ function EquipAllWeapon()
 	end)
 end
 
+function StoreFruit()
+    for i,v in pairs(thelocal.Backpack:GetChildren()) do
+        if v:IsA("Tool") and string.find(v.Name, "Fruit") then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit",v:GetAttribute("OriginalName"),v)
+        end
+    end
+end
+
+if getgenv().NoDieEffect then
+    if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
+        game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
+    end
+    if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
+        game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
+    end
+end
+
+_G.TargTrial = nil
+function targettrial()
+    if _G.TargTrial ~= nil then return end
+    local a = nil
+    local b = 450
+    for i,v in pairs(game.Players:GetChildren()) do
+        c = (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+        if c <= b and v ~= game.Players.LocalPlayer then
+            b = c 
+            a = v
+        end
+    end
+    if a == nil then return end
+    if _G.TargTrial ~= nil then return end
+    _G.TargTrial = a
+end
+
 	local plr = game.Players.LocalPlayer
 	local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
 	local CbFw2 = CbFw[2]
@@ -2194,20 +2271,22 @@ function ClickCamera()
 
 ------AttackNoCD
 
-    local plr = game.Players.LocalPlayer
-	local CbFw = getupvalues(require(plr.PlayerScripts.CombatFramework))
+	--Hard fast
+
+	local plr = game.Players.LocalPlayer
+	local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
 	local CbFw2 = CbFw[2]
 
-    function GetCurrentBlade() 
-        local p13 = CbFw2.activeController
-        local ret = p13.blades[1]
-        if not ret then return end
-        while ret.Parent~=game.Players.LocalPlayer.Character do ret=ret.Parent end
-        return ret
-    end
-    
-    function AttackNoCD()
-        if not AutoFarmMasDevilFruit or AutoFarmMasGun then
+	function GetCurrentBlade() 
+		local p13 = CbFw2.activeController
+		local ret = p13.blades[1]
+		if not ret then return end
+		while ret.Parent~=game.Players.LocalPlayer.Character do ret=ret.Parent end
+		return ret
+	end
+
+	function AttackNoCD()
+        if not Auto_Farm_Bounty and not Auto_Farm_Fruit or Mix_Farm then
             if not Auto_Raid then
                 local AC = CbFw2.activeController
                 for i = 1, 1 do 
@@ -2254,7 +2333,7 @@ function ClickCamera()
                 end
             end
         end
-    end
+	end
     
 --Attack Mastery
     function NormalAttack()
@@ -2560,7 +2639,7 @@ end)
 
 Set:Seperator("โหมดการโจมตีแบบทั่วไป")
 
-Set:Seperator("ตีเร็ว 1")
+Set:Seperator("ตีเร็ว")
 
 Set:Toggle("ความเร็วโจมตี [ ออล่า ]", true, function(value)
     _G.FastAttackFaiFao = value
