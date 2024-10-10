@@ -2593,7 +2593,7 @@ Set:Seperator("โหมดการโจมตีแบบทั่วไป")
 
 Set:Seperator("ตีเร็ว")
 
-Set:Toggle("ความเร็วโจมตี [ ออล่า ]", true, function(value)
+Set:Toggle("ความเร็วโจมตี [ จะตีแบบออล่า และมีโอกาสโดนเตะ ]", false, function(value)
     _G.FastAttackFaiFao = value
 end)
 
@@ -2611,11 +2611,7 @@ end)
 local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
 Camera:Stop()
 
-Set:Toggle("บายพาส เทเลพอร์ต", true, function(value)
-    BypassTP = value
-end)
-
-Set:Toggle("ความเร็วโจมตี [ ออล่า ]", true, function(value)
+Set:Toggle("ความเร็วโจมตี [ จะตีเร็วตามปกติ ]", true, function(value)
     _G.FastAttack = value
 end)
 
@@ -2650,6 +2646,9 @@ spawn(function()
             game.Players.LocalPlayer.Character.Busy.Value = false        
         end
     end)
+end)
+Set:Toggle("บายพาส เทเลพอร์ต", true, function(value)
+    BypassTP = value
 end)
     Set:Toggle("ออโต้ ฮาคิเกาะ", true, function(value)
         _G.AUTOHAKI = value
@@ -7674,7 +7673,7 @@ end)
 
 Race:Seperator("ทำ เผ่า V4")
 
-Stats:Toggle("ออโต้ เผ่า V4", false, function(value)
+Race:Toggle("ออโต้ เผ่า V4", false, function(value)
     _G.AutoQuestRace = value  
     StopTween(_G.AutoQuestRace)
 end)
